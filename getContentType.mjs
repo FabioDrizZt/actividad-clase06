@@ -1,6 +1,6 @@
-const path = require('path')
+import path from 'path'
 
-exports.getContentType = (filePath) => {
+export const getContentType = (filePath) => {
   const extname = path.extname(filePath)
   switch (extname) {
     case '.js':
@@ -12,6 +12,7 @@ exports.getContentType = (filePath) => {
     case '.png':
       return 'image/png'
     case '.jpg':
+      return 'image/jpeg'
     case '.jpeg':
       return 'image/jpeg'
     case '.svg':
