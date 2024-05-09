@@ -1,7 +1,7 @@
 import { createServer } from 'http'
 import { readFile } from 'fs'
 import { join, dirname } from 'path'
-import { getContentType } from './getContentType.mjs'
+import { getContentType } from './getContentType.js'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url) // Obtener ruta del archivo actual
@@ -48,8 +48,8 @@ const server = createServer((req, res) => {
       const filePath = join(__dirname, 'public', url)
       readFile(filePath, (err, data) => {
         if (err) {
-          res.writeHead(500, { 'Content-Type': 'text/html' })
-          res.end('<h1>Error interno del servidor</h1>')
+          res.writeHead(404, { 'Content-Type': 'text/html' })
+          res.end('<h1>404 - Page not found</h1>')
         } else {
           res.writeHead(200, { 'Content-Type': getContentType(filePath) })
           res.end(data)
